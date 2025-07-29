@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<robot name="walle" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="left_wheel_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="right_wheel_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="caster_wheel_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="lidar_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="imu_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+  <gazebo>
+    <xacro:if value="$(arg is_ignition)">
+      <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+        <parameters>$(find walle_controller)/config/walle_controllers.yaml</parameters>
+      </plugin>
+      <plugin filename="ignition-gazebo-imu-system" name="ignition::gazebo::systems::Imu">
+      </plugin>
+    </xacro:if>
+
+    <xacro:unless value="$(arg is_ignition)">
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>$(find walle_controller)/config/walle_controllers.yaml</parameters>
+      </plugin>
+       <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
+      </plugin>     
+    </xacro:unless>
+  </gazebo>
+
+  <gazebo reference="imu_1">
+   <sensor name="imu" type="imu">
+     <always_on>true</always_on>
+     <update_rate>100</update_rate>
+     <gz_frame_id>imu_1</gz_frame_id>
+     <topic>imu</topic>
+     <imu>
+      <angular_velocity>
+        <x>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+          </noise>
+        </x>
+        <y>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+          </noise>
+      
+        </y>
+        <z>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+          </noise>
+      
+        </z>
+      </angular_velocity>
+      <linear_acceleration>
+        <x>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+          </noise>
+        </x>
+        <y>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+          </noise>
+      
+        </y>
+        <z>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+          </noise>
+      
+        </z>      
+      </linear_acceleration>
+    </imu>
+   </sensor> 
+  </gazebo>
+
+</robot>

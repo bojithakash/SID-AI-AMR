@@ -1,0 +1,167 @@
+<?xml version="1.0" ?>
+<robot name="walle" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="is_ignition" default="true"/>
+  
+<xacro:include filename="$(find walle_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find walle_description)/urdf/walle_ros2_control.xacro" />
+<xacro:include filename="$(find walle_description)/urdf/walle_gazebo.xacro" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.11032812925913082 0.16143345897542147 0.1194833264776962" rpy="0 0 0"/>
+    <mass value="4.791704659790887"/>
+    <inertia ixx="0.036131" iyy="0.02501" izz="0.044487" ixy="0.0" iyz="5e-06" ixz="-5.5e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="3.19240895607642e-07 0.025000458514719714 1.8088619061634725e-07" rpy="0 0 0"/>
+    <mass value="3.5956470398131257"/>
+    <inertia ixx="0.00337" iyy="0.005242" izz="0.00337" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.055171 -0.2712 -0.054001" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.055171 -0.2712 -0.054001" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="3.1924089567009206e-07 -0.02500022053398937 1.8088619049144716e-07" rpy="0 0 0"/>
+    <mass value="3.5956470398131253"/>
+    <inertia ixx="0.00337" iyy="0.005242" izz="0.00337" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.055171 -0.051801 -0.054001" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.055171 -0.051801 -0.054001" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="caster_wheel_1">
+  <inertial>
+    <origin xyz="-8.696423534071407e-08 -2.8085090747476116e-07 -0.04496975521572785" rpy="0 0 0"/>
+    <mass value="0.4982856545913868"/>
+    <inertia ixx="0.000365" iyy="0.000365" izz="5.5e-05" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.212168 -0.16141 -0.094797" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/caster_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.212168 -0.16141 -0.094797" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/caster_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="-8.696423536846964e-08 -2.808509075580279e-07 0.009718373123905832" rpy="0 0 0"/>
+    <mass value="0.5843654094095093"/>
+    <inertia ixx="0.000193" iyy="0.000193" izz="0.000348" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.112168 -0.16141 -0.179797" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.112168 -0.16141 -0.179797" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="imu_1">
+  <inertial>
+    <origin xyz="-8.696423535459186e-08 -3.511515006549004e-08 -0.0024998122926913197" rpy="0 0 0"/>
+    <mass value="0.007290803052000012"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.089668 -0.161242 -0.089797" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/imu_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.089668 -0.161242 -0.089797" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find walle_description)/meshes/imu_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="0.055171 0.2712 0.054001" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="0.055171 0.051801 0.054001" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="caster_wheel_joint" type="fixed">
+  <origin xyz="0.212168 0.16141 0.094797" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="caster_wheel_1"/>
+</joint>
+
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="0.112168 0.16141 0.179797" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+<joint name="imu_joint" type="fixed">
+  <origin xyz="0.089668 0.161242 0.089797" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="imu_1"/>
+</joint>
+
+</robot>
