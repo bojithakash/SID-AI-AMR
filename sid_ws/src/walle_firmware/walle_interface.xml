@@ -1,0 +1,10 @@
+<library path="walle_firmware">
+    <class name="walle_firmware/walleInterface"
+      type="walle_firmware::walleInterface"
+      base_class_type="hardware_interface::SystemInterface"
+    >
+      <description>
+        walle Hardware Interface
+      </description>
+    </class>
+  </library>

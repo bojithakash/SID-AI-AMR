@@ -3,6 +3,8 @@
 
   <xacro:arg name="is_ignition" default="true"/>
   
+  <xacro:arg name="is_sim" default="true"/>
+
 <xacro:include filename="$(find walle_description)/urdf/materials.xacro" />
 <xacro:include filename="$(find walle_description)/urdf/walle_ros2_control.xacro" />
 <xacro:include filename="$(find walle_description)/urdf/walle_gazebo.xacro" />
