@@ -2,6 +2,7 @@
 
 using std::placeholders::_1;
 
+
 KalmanFilter::KalmanFilter(const std::string& name) 
                     : Node(name),
                       mean_(0.0),
@@ -30,24 +31,19 @@ void KalmanFilter::odomCallback(const nav_msgs::msg::Odometry &odom)
       is_first_odom_ = false;
       return;
   }
-
     motion_ = odom.twist.twist.angular.z - last_angular_z_;
-
     statePrediction();
     measurementUpdate();
-
     last_angular_z_ = odom.twist.twist.angular.z;
 
     kalman_odom_.twist.twist.angular.z = mean_;
     odom_pub_->publish(kalman_odom_);
 }
 
-
 void KalmanFilter::imuCallback(const sensor_msgs::msg::Imu &imu)
 {
     imu_angular_z_ = imu.angular_velocity.z;
 }
-
 
 void KalmanFilter::measurementUpdate()
 {
@@ -58,13 +54,11 @@ void KalmanFilter::measurementUpdate()
               / (variance_ + measurement_variance_);
 }
 
-
 void KalmanFilter::statePrediction()
 {
     mean_ = mean_ + motion_;
     variance_ = variance_ + motion_variance_;
 }
-
 
 int main(int argc, char* argv[])
 {
