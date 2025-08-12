@@ -1,4 +1,5 @@
 import os
+from os import pathsep
 from pathlib import Path
 from ament_index_python.packages import get_package_share_directory
 
@@ -62,7 +63,7 @@ def generate_launch_description():
         executable="create",
         output="screen",
         arguments=["-topic", "robot_description",
-                   "-name", "wall-e"],
+                   "-name", "walle"],
     )
 
     gz_ros2_bridge = Node(
@@ -70,7 +71,8 @@ def generate_launch_description():
         executable="parameter_bridge",
         arguments=[
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
-            "/imu@sensor_msgs/msg/Imu[gz.msgs.IMU"
+            "/imu@sensor_msgs/msg/Imu[gz.msgs.IMU",
+            "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan"
         ],
         remappings=[
             ("/imu", "imu/out")
