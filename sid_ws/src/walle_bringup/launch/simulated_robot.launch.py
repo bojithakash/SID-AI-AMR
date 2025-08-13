@@ -24,11 +24,11 @@ def generate_launch_description():
         }.items(),
     )
     
-    joy = IncludeLaunchDescription(
+    joystick = IncludeLaunchDescription(
         os.path.join(
             get_package_share_directory("walle_controller"),
             "launch",
-            "joy_teleop.launch.py"
+            "joystick_teleop.launch.py"
         ),
         launch_arguments={
             "use_sim_time": "True"
@@ -38,5 +38,5 @@ def generate_launch_description():
     return LaunchDescription([
         gazebo,
         controller,
-        joy,
+        joystick,
     ])
