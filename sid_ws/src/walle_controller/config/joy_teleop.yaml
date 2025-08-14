@@ -3,7 +3,7 @@ joy_teleop:
     move:
       type: topic
       interface_type: geometry_mgs/msg/TwistStamped
-      topic_name : walle_controller/cmd_vel
+      topic_name : /input_joy/cmd_vel
 
       deadman_buttons : 5
 

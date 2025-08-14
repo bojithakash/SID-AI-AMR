@@ -45,6 +45,9 @@ ament_target_dependencies(noisy_controller rclcpp geometry_msgs sensor_msgs nav_
 add_executable(simple_lifecycle_node src/simple_lifecycle_node.cpp)
 ament_target_dependencies(simple_lifecycle_node rclcpp rclcpp_lifecycle std_msgs)
 
+add_executable(twist_relay src/twist_relay.cpp)
+ament_target_dependencies(twist_relay rclcpp geometry_msgs)
+
 install(
   DIRECTORY include
   DESTINATION include
@@ -57,6 +60,7 @@ install(TARGETS
   simple_client_server
   noisy_controller
   simple_lifecycle_node
+  twist_relay
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -22,8 +22,8 @@ private:
 
     double wheel_radius_;
     double wheel_separation_;
-    double right_wheel_prev_pos_;
     double left_wheel_prev_pos_;
+    double right_wheel_prev_pos_;
     rclcpp::Time prev_time_;
     nav_msgs::msg::Odometry odom_msg_;
     double x_;
