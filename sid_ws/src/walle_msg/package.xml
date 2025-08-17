@@ -4,9 +4,8 @@
   <name>walle_msg</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="kanthprithiv@gmail.com">prithiv</maintainer>
+  <maintainer email="bojithakash68@gmail.com">bojithakash68</maintainer>
   <license>TODO: License declaration</license>
-
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>std_msgs</depend>

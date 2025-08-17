@@ -13,14 +13,12 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(walle_msg REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
-
-
+find_package(walle_msg REQUIRED)
 
 ament_python_install_package(${PROJECT_NAME})
 
@@ -48,36 +46,6 @@ ament_target_dependencies(simple_lifecycle_node rclcpp rclcpp_lifecycle std_msgs
 add_executable(twist_relay src/twist_relay.cpp)
 ament_target_dependencies(twist_relay rclcpp geometry_msgs)
 
-add_library(simple_action_server SHARED src/simple_action_server.cpp)
-target_include_directories(simple_action_server PRIVATE
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-target_compile_definitions(simple_action_server
-  PRIVATE "SIMPLE_ACTION_SERVER_CPP_BUILDING_DLL")
-ament_target_dependencies(simple_action_server
-  "walle_msg"
-  "rclcpp"
-  "rclcpp_action"
-  "rclcpp_components")
-rclcpp_components_register_node(simple_action_server 
-  PLUGIN "walle_controller::SimpleActionServer" 
-  EXECUTABLE simple_action_server_node
-)
-add_library(simple_action_client SHARED src/simple_action_client.cpp)
-target_include_directories(simple_action_client PRIVATE
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-target_compile_definitions(simple_action_client
-  PRIVATE "SIMPLE_ACTION_CLIENT_CPP_BUILDING_DLL")
-ament_target_dependencies(simple_action_client
-  "walle_msg"
-  "rclcpp"
-  "rclcpp_action"
-  "rclcpp_components")
-rclcpp_components_register_node(simple_action_client 
-  PLUGIN "walle_controller::SimpleActionClient" 
-  EXECUTABLE simple_action_client_node
-)
 
 install(
   DIRECTORY include
@@ -95,13 +63,6 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(TARGETS
-  simple_action_server
-  simple_action_client
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-)
 install(
   DIRECTORY config launch
   DESTINATION share/${PROJECT_NAME}
