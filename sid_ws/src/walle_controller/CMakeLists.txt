@@ -46,6 +46,11 @@ ament_target_dependencies(simple_lifecycle_node rclcpp rclcpp_lifecycle std_msgs
 add_executable(twist_relay src/twist_relay.cpp)
 ament_target_dependencies(twist_relay rclcpp geometry_msgs)
 
+add_executable(simple_qos_publisher src/simple_qos_publisher.cpp)
+ament_target_dependencies(simple_qos_publisher rclcpp std_msgs)
+
+add_executable(simple_qos_subscriber src/simple_qos_subscriber.cpp)
+ament_target_dependencies(simple_qos_subscriber rclcpp std_msgs)
 
 install(
   DIRECTORY include
@@ -60,6 +65,8 @@ install(TARGETS
   noisy_controller
   simple_lifecycle_node
   twist_relay
+  simple_qos_publisher
+  simple_qos_subscriber
   DESTINATION lib/${PROJECT_NAME}
 )
 
