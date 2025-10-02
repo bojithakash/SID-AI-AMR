@@ -15,10 +15,18 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2 REQUIRED)
 
 add_executable(mapping_with_known_poses src/mapping_with_known_poses.cpp)
-ament_target_dependencies(mapping_with_known_poses rclcpp sensor_msgs tf2_ros nav_msgs geometry_msgs tf2)
+ament_target_dependencies(mapping_with_known_poses
+  rclcpp sensor_msgs tf2_ros nav_msgs geometry_msgs tf2
+)
+
+# ✅ Tell CMake where to find headers
+target_include_directories(mapping_with_known_poses PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
 
 install(
-  DIRECTORY include
+  DIRECTORY include/
   DESTINATION include
 )
 

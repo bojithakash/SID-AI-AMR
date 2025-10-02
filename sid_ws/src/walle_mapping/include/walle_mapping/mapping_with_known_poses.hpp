@@ -10,7 +10,7 @@
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/buffer.h"
 
-namespace bumperbot_mapping
+namespace walle_mapping
 {
 inline const double PRIOR_PROB = 0.5;
 inline const double OCC_PROB = 0.9;
@@ -59,6 +59,6 @@ private:
     std::unique_ptr<tf2_ros::Buffer> tf_buffer_;
     std::shared_ptr<tf2_ros::TransformListener> tf_listener_{nullptr};
 };
-}  
+}  // namespace walle_mapping
 
-#endif 
+#endif

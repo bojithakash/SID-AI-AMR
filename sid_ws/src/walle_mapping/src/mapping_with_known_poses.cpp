@@ -35,14 +35,12 @@ Pose coordinatesToPose(const double px, const double py, const nav_msgs::msg::Ma
 
 bool poseOnMap(const Pose & pose, const nav_msgs::msg::MapMetaData & map_info)
 {
-    
     return pose.x < static_cast<int>(map_info.width)  && pose.x >= 0 &&
            pose.y < static_cast<int>(map_info.height) && pose.y >= 0;
 }
 
 std::vector<Pose> bresenham(const Pose & start, const Pose & end)
 {
-
     std::vector<Pose> line;
 
     int dx = end.x - start.x;
@@ -142,7 +140,7 @@ void MappingWithKnownPoses::scanCallback(const sensor_msgs::msg::LaserScan &scan
     }
     catch (const tf2::TransformException &ex)
     {
-        RCLCPP_ERROR(get_logger(), "Unable to transform between /odom and /base_footprint");
+        RCLCPP_ERROR(this->get_logger(), "Unable to transform between /odom and /base_footprint");
         return;
     }
 
@@ -150,7 +148,7 @@ void MappingWithKnownPoses::scanCallback(const sensor_msgs::msg::LaserScan &scan
     Pose robot_p = coordinatesToPose(t.transform.translation.x, t.transform.translation.y, map_.info);
     if(!poseOnMap(robot_p, map_.info))
     {
-        RCLCPP_ERROR(get_logger(), "The robot is out of the Map!");
+        RCLCPP_ERROR(this->get_logger(), "The robot is out of the Map!");
         return;
     }
 
@@ -192,17 +190,17 @@ void MappingWithKnownPoses::scanCallback(const sensor_msgs::msg::LaserScan &scan
 void MappingWithKnownPoses::timerCallback()
 {
     std::transform(probability_map_.begin(), probability_map_.end(), map_.data.begin(), [](double value){
-        return logodds2prob(value) * 100;
+        return static_cast<int8_t>(logodds2prob(value) * 100.0);
     });
-    map_.header.stamp = get_clock()->now();
+    map_.header.stamp = this->get_clock()->now();
     map_pub_->publish(map_);
 }
-}  
+}  // namespace walle_mapping
 
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<bumperbot_mapping::MappingWithKnownPoses>("mapping_with_known_poses");
+    auto node = std::make_shared<walle_mapping::MappingWithKnownPoses>("mapping_with_known_poses");
     rclcpp::spin(node);
     rclcpp::shutdown();
     return 0;
