@@ -6,6 +6,7 @@ An **AI-powered Interactive Autonomous Mobile Robot (AMR)** that combines a **:c
 This robot is designed for **human–robot interaction, indoor navigation, voice & vision-based AI interaction, and autonomous movement** using **ROS2, computer vision, and multimodal AI models**.
 
 > ⚠️ **Project Status:** Actively under development. Hardware integration, AI behaviors, and navigation stack are currently in progress.
+![WhatsApp Image 2025-11-30 at 10 25 06 PM](https://github.com/user-attachments/assets/ebaec5ef-13cd-4984-ae93-af70ef8b822e)
 
 ---
 
