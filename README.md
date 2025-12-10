@@ -1,5 +1,6 @@
 # 🤖 AI Interactive AMR Robot  
-### Reactive Head + WALL·E Inspired Autonomous Mobile Robot
+# Reactive Head + WALL·E Inspired Autonomous Mobile Robot
+![WhatsApp Image 2025-11-30 at 10 37 59 PM](https://github.com/user-attachments/assets/49d1ad82-68e5-48a9-b6e7-da5468cc9b3d)
 
 An **AI-powered Interactive Autonomous Mobile Robot (AMR)** that combines a **:contentReference[oaicite:0]{index=0}-inspired reactive robotic head** with a **WALL·E-style expressive mobile base**.  
 This robot is designed for **human–robot interaction, indoor navigation, voice & vision-based AI interaction, and autonomous movement** using **ROS2, computer vision, and multimodal AI models**.
